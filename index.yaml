@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  cicero-frontend:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-14T11:45:32.709391296Z"
+    description: A Helm chart for Kubernetes
+    digest: d68923ece8ca50bde7cb6c266f1f51f2f71a94d532da0f72ec9c0efa42847917
+    name: cicero-frontend
+    type: application
+    urls:
+    - https://github.com/Accelnomics-Technologies/helmcharts.git/cicero-frontend-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-03-14T11:45:32.708620715Z"
