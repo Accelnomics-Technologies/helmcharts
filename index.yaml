@@ -9,6 +9,6 @@ entries:
     name: cicero-frontend
     type: application
     urls:
-    - https://github.com/Accelnomics-Technologies/helmcharts.git/cicero-frontend-0.1.0.tgz
+    - https://accelnomics-technologies.github.io/helmcharts/cicero-frontend-0.1.0.tgz
     version: 0.1.0
 generated: "2024-03-14T11:45:32.708620715Z"
