@@ -3,7 +3,7 @@ entries:
   cic-backend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-15T06:02:31.938908011Z"
+    created: "2024-03-15T11:14:55.730237986Z"
     description: A Helm chart for Kubernetes
     digest: b231fcff48615b7ef2283c74eb598f6a82e1f6c206ef1ffcc10e8f974d4282e5
     name: cic-backend
@@ -11,10 +11,21 @@ entries:
     urls:
     - https://accelnomics-technologies.github.io/helmcharts/cic-backend-0.1.0.tgz
     version: 0.1.0
+  cic-genai:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-15T11:14:55.730668202Z"
+    description: A Helm chart for Kubernetes
+    digest: 326039487ec4052cf85208b82cebc60f66831cc5cd7d8653554dccc59ba9c6c2
+    name: cic-genai
+    type: application
+    urls:
+    - https://accelnomics-technologies.github.io/helmcharts/cic-genai-0.1.0.tgz
+    version: 0.1.0
   cicero-frontend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-15T06:02:31.939321Z"
+    created: "2024-03-15T11:14:55.731030597Z"
     description: A Helm chart for Kubernetes
     digest: f6ad3d7224e4cd6333f5ad7d9ddda08f6533dbee3e3af70d11b3767532281615
     name: cicero-frontend
@@ -22,4 +33,4 @@ entries:
     urls:
     - https://accelnomics-technologies.github.io/helmcharts/cicero-frontend-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-15T06:02:31.938351758Z"
+generated: "2024-03-15T11:14:55.729668124Z"
