@@ -13,12 +13,12 @@ image:
   tag: ""
 
 imagePullSecrets: 
-  - name: "cicero-discovery-image-pull-secret"
-nameOverride: "cicero-discovery"
-fullnameOverride: "cicero-discovery"
+  - name: "cicero-backend-image-pull-secret"
+nameOverride: "cicero-backend"
+fullnameOverride: "cicero-backend"
 
 secret:
-  secretName: cicero-discovery-image-pull-secret
+  secretName: cicero-backend-image-pull-secret
   dockerconfigjson: ""
 serviceAccount:
   # Specifies whether a service account should be created
@@ -46,8 +46,14 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 3000
+  - type: ClusterIP
+    port: 5000
+    appProtocol: http
+    protocol: TCP
+  - type: ClusterIP
+    port: 4001
+    appProtocol: http
+    protocol: TCP
 
 ingress:
   enabled: false
@@ -80,11 +86,11 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: 3000
+    port: 5000
 readinessProbe:
   httpGet:
     path: /
-    port: 3000
+    port: 5000
 
 autoscaling:
   enabled: false
