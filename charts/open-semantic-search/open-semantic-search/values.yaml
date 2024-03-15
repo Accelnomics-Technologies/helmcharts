@@ -1,0 +1,104 @@
+apps:
+  replicaCount: 1
+  image:
+    repository: opensemanticsearch/open-semantic-search
+    tag: latest
+  environment:
+    SOLR_PHP_UI_SOLR_HOST: solr
+    OPEN_SEMANTIC_ETL_MQ_BROKER: amqp://rabbitmq
+    OPEN_SEMANTIC_ETL_SOLR: http://solr:8983/solr/
+    OPEN_SEMANTIC_ETL_TIKA_SERVER: http://tika:9998
+    OPEN_SEMANTIC_ETL_TIKA_SERVER_FAKECACHE: http://tika-fakecache:9998
+    OPEN_SEMANTIC_ETL_SPACY_SERVER: http://spacy-services:8080
+    OPEN_SEMANTIC_ETL_NEO4J_HOST: neo4j
+    FLOWER_URL: http://flower:5555/flower
+  volumes:
+    config_etl: /etc/opensemanticsearch
+    config_solr_php_ui: /etc/solr-php-ui
+    data_db: /var/opensemanticsearch/db
+    data_media: /var/opensemanticsearch/media
+
+etl:
+  replicaCount: 1
+  image:
+    repository: opensemanticsearch/open-semantic-etl
+    tag: latest
+  environment:
+    OPEN_SEMANTIC_ETL_MQ_BROKER: amqp://rabbitmq
+    OPEN_SEMANTIC_ETL_METADATA_SERVER: http://apps/search-apps/annotate/json
+    OPEN_SEMANTIC_ETL_SOLR: http://solr:8983/solr/
+    OPEN_SEMANTIC_ETL_TIKA_SERVER: http://tika:9998
+    OPEN_SEMANTIC_ETL_TIKA_SERVER_FAKECACHE: http://tika-fakecache:9998
+    OPEN_SEMANTIC_ETL_SPACY_SERVER: http://spacy-services:8080
+    OPEN_SEMANTIC_ETL_NEO4J_HOST: neo4j
+    OMP_THREAD_LIMIT: 1
+  volumes:
+    config_etl: /etc/opensemanticsearch:ro
+    data_media: /var/opensemanticsearch/media
+    cache_tesseract: /var/cache/tesseract
+
+solr:
+  replicaCount: 1
+  image:
+    repository: opensemanticsearch/solr
+    tag: latest
+  environment:
+    SOLR_LOCAL_HOST: 0.0.0.0
+  volumes:
+    data_solr: /var/solr
+
+tika:
+  replicaCount: 1
+  image:
+    repository: opensemanticsearch/tika-server
+    tag: latest
+  environment:
+    OMP_THREAD_LIMIT: 1
+    TIKA_CONFIG: /etc/tika/tika-config-cache.xml
+  volumes:
+    cache_tesseract: /var/cache/tesseract
+
+tika-fakecache:
+  replicaCount: 1
+  image:
+    repository: opensemanticsearch/tika-server
+    tag: latest
+  environment:
+    OMP_THREAD_LIMIT: 1
+    TIKA_CONFIG: /etc/tika/tika-config-fakecache.xml
+  volumes:
+    cache_tesseract: /var/cache/tesseract
+
+spacy-services:
+  replicaCount: 1
+  image:
+    repository: opensemanticsearch/spacy-services
+    tag: latest
+
+rabbitmq:
+  replicaCount: 1
+  image:
+    repository: rabbitmq
+    tag: latest
+
+flower:
+  replicaCount: 1
+  image:
+    repository: mher/flower
+    tag: latest
+  environment:
+    CELERY_BROKER_URL: amqp://rabbitmq
+    FLOWER_PORT: 5555
+    FLOWER_URL_PREFIX: flower
+
+neo4j:
+  replicaCount: 1
+  image:
+    repository: neo4j
+    tag: latest
+
+cron:
+  replicaCount: 1
+  image:
+    repository: opensemanticsearch/cron
+    tag: latest

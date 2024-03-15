@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "open-semantic-search.fullname" . }-flower}
+  labels:
+    {{- include "open-semantic-search.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.flower.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "open-semantic-search.name" . }-flower}
+  template:
+    metadata:
+      labels:
+        app: {{ include "open-semantic-search.name" . }-flower}
+    spec:
+      containers:
+      - name: flower
+        image: "{{ .Values.flower.image.repository }}:{{ .Values.flower.image.tag }}" 
+        ports:
+        # Define ports here based on the service's requirements
+        env:
+        # Define environment variables here based on the service's requirements
+        volumeMounts:
+        # Define volume mounts here based on the service's requirements
+      volumes:
+      # Define volumes here based on the service's requirements

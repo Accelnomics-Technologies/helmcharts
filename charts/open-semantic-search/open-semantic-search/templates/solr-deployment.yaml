@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "open-semantic-search.fullname" . }-solr}
+  labels:
+    {{- include "open-semantic-search.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.solr.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "open-semantic-search.name" . }-solr}
+  template:
+    metadata:
+      labels:
+        app: {{ include "open-semantic-search.name" . }-solr}
+    spec:
+      containers:
+      - name: solr
+        image: "{{ .Values.solr.image.repository }}:{{ .Values.solr.image.tag }}" 
+        ports:
+        # Define ports here based on the service's requirements
+        env:
+        # Define environment variables here based on the service's requirements
+        volumeMounts:
+        # Define volume mounts here based on the service's requirements
+      volumes:
+      # Define volumes here based on the service's requirements

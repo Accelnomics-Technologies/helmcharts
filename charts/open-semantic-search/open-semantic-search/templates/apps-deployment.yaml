@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "open-semantic-search.fullname" . }}-apps
+  labels:
+    {{- include "open-semantic-search.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.apps.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "open-semantic-search.name" . }}-apps
+  template:
+    metadata:
+      labels:
+        app: {{ include "open-semantic-search.name" . }}-apps
+    spec:
+      containers:
+        - name: apps
+          image: "{{ .Values.apps.image.repository }}:{{ .Values.apps.image.tag }}"
+          ports:
+            - containerPort: 80
+          env:
+            - name: SOLR_PHP_UI_SOLR_HOST
+              value: "solr"
+            # Add other environment variables here
+          volumeMounts:
+            - name: config-etl
+              mountPath: /etc/opensemanticsearch
+            # Add other volume mounts here
+      volumes:
+        - name: config-etl
+          persistentVolumeClaim:
+            claimName: {{ .Values.volumes.configEtl.claimName }}
+        # Define other volumes here
