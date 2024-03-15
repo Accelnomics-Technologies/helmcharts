@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "cic-backend.fullname" . }}:{{ .Values.service.0.port }}']
+      args: ['{{ include "cic-backend.fullname" . }}:{{ index (index .Values.service 0) "port" }}']
   restartPolicy: Never
