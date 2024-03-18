@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "open-semantic-search.fullname" . }-cron}
+  name: {{ include "cic-search.fullname" . }-etl}
   labels:
-    {{- include "open-semantic-search.labels" . | nindent 4 }}
+    {{- include "cic-search.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.cron.replicaCount }}
+  replicas: {{ .Values.etl.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "open-semantic-search.name" . }-cron}
+      app: {{ include "cic-search.name" . }-etl}
   template:
     metadata:
       labels:
-        app: {{ include "open-semantic-search.name" . }-cron}
+        app: {{ include "cic-search.name" . }-etl}
     spec:
       containers:
-      - name: cron
-        image: "{{ .Values.cron.image.repository }}:{{ .Values.cron.image.tag }}" 
+      - name: etl
+        image: "{{ .Values.etl.image.repository }}:{{ .Values.etl.image.tag }}" 
         ports:
         # Define ports here based on the service's requirements
         env:

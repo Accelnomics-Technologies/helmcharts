@@ -1,4 +1,4 @@
 apiVersion: v2
-name: open-semantic-search
+name: cic-search
 description: A Helm chart for Open Semantic Search
 version: 0.1.0

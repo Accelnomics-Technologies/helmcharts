@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "open-semantic-search.fullname" . }-spacy-services}
+  name: {{ include "cic-search.fullname" . }-spacy-services}
   labels:
-    {{- include "open-semantic-search.labels" . | nindent 4 }}
+    {{- include "cic-search.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.spacy-services.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "open-semantic-search.name" . }-spacy-services}
+      app: {{ include "cic-search.name" . }-spacy-services}
   template:
     metadata:
       labels:
-        app: {{ include "open-semantic-search.name" . }-spacy-services}
+        app: {{ include "cic-search.name" . }-spacy-services}
     spec:
       containers:
       - name: spacy-services

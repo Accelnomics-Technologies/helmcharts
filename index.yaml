@@ -3,7 +3,7 @@ entries:
   cic-backend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-15T13:11:05.452755942Z"
+    created: "2024-03-18T04:31:16.606311153Z"
     description: A Helm chart for Kubernetes
     digest: b231fcff48615b7ef2283c74eb598f6a82e1f6c206ef1ffcc10e8f974d4282e5
     name: cic-backend
@@ -14,7 +14,7 @@ entries:
   cic-genai:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-15T13:11:05.453161851Z"
+    created: "2024-03-18T04:31:16.606716703Z"
     description: A Helm chart for Kubernetes
     digest: 326039487ec4052cf85208b82cebc60f66831cc5cd7d8653554dccc59ba9c6c2
     name: cic-genai
@@ -22,10 +22,19 @@ entries:
     urls:
     - https://accelnomics-technologies.github.io/helmcharts/cic-genai-0.1.0.tgz
     version: 0.1.0
+  cic-search:
+  - apiVersion: v2
+    created: "2024-03-18T04:31:16.607122829Z"
+    description: A Helm chart for Open Semantic Search
+    digest: de8bdfbf043ab479df6f6d3407faf65f1bd8d55dfbf488b8a3fa7b3f9c0b79fa
+    name: cic-search
+    urls:
+    - https://accelnomics-technologies.github.io/helmcharts/cic-search-0.1.0.tgz
+    version: 0.1.0
   cicero-frontend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-15T13:11:05.453542619Z"
+    created: "2024-03-18T04:31:16.607494294Z"
     description: A Helm chart for Kubernetes
     digest: f6ad3d7224e4cd6333f5ad7d9ddda08f6533dbee3e3af70d11b3767532281615
     name: cicero-frontend
@@ -33,13 +42,4 @@ entries:
     urls:
     - https://accelnomics-technologies.github.io/helmcharts/cicero-frontend-0.1.0.tgz
     version: 0.1.0
-  open-semantic-search:
-  - apiVersion: v2
-    created: "2024-03-15T13:11:05.45393888Z"
-    description: A Helm chart for Open Semantic Search
-    digest: 4d0acc9aa9eff0b97714e1cdfded297cb0bcc78be6c9d32bcb72f691f9733ad9
-    name: open-semantic-search
-    urls:
-    - https://accelnomics-technologies.github.io/helmcharts/open-semantic-search-0.1.0.tgz
-    version: 0.1.0
-generated: "2024-03-15T13:11:05.452211242Z"
+generated: "2024-03-18T04:31:16.605780031Z"
