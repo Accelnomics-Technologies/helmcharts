@@ -1,0 +1,25 @@
+# templates/persistentvolumeclaim.yaml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: {{ .Values.persistentVolumeClaim.name }}
+  namespace: {{ .Values.persistentVolumeClaim.namespace }}
+spec:
+  accessModes:
+  - {{ .Values.persistentVolumeClaim.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistentVolumeClaim.storage }}
+{{- if eq .Values.persistentVolumeClaim.storageClassName "local-storage" }}
+  storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
+{{- end }}
+{{- if .Values.persistentVolumeClaim.volumeMode }}
+  volumeMode: {{ .Values.persistentVolumeClaim.volumeMode }}
+{{- end }}
+{{- if .Values.persistentVolumeClaim.volumeName }}
+  volumeName: {{ .Values.persistentVolumeClaim.volumeName }}
+{{- end }}
+

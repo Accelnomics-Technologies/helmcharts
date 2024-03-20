@@ -82,11 +82,13 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: 8080
+    port: 8000
 readinessProbe:
   httpGet:
     path: /
-    port: 8080
+    port: 8000
+
+
 
 autoscaling:
   enabled: false
@@ -113,3 +115,24 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+persistentVolume:
+  name: chromadb
+  capacity: 2Gi
+  accessMode: ReadWriteOnce
+  reclaimPolicy: Delete
+  storageClassName: local-storage
+  localPath: /chromadb
+  nodeAffinity:
+    enabled: true
+    hostname: auto-int-k8w01
+
+persistentVolumeClaim:
+  name: chromadb
+  namespace: cicero
+  accessMode: ReadWriteOnce
+  storage: 5Gi
+  storageClassName: local-storage
+  volumeMode: Filesystem
+  volumeName: chromadb
+

@@ -1,0 +1,28 @@
+# templates/persistentvolume.yaml
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.persistentVolume.name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistentVolume.capacity }}
+  accessModes:
+  - {{ .Values.persistentVolume.accessMode }}
+  persistentVolumeReclaimPolicy: {{ .Values.persistentVolume.reclaimPolicy }}
+  storageClassName: {{ .Values.persistentVolume.storageClassName }}
+{{- if eq .Values.persistentVolume.storageClassName "local-storage" }}
+  local:
+    path: {{ .Values.persistentVolume.localPath }}
+{{- end }}
+{{- if .Values.persistentVolume.nodeAffinity.enabled }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - {{ .Values.persistentVolume.nodeAffinity.hostname }}
+{{- end }}
+
